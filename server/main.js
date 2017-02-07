@@ -6,17 +6,14 @@ import { Employees } from '../imports/collections/employees';
 
 Meteor.startup(() => {
 
-  // See if collection has any records
   const numberRecords = Employees.find({}).count();
 
   if (!numberRecords) {
-    // Generate data
     _.times(5000, () => {
       const { name, email, phone } = helpers.createCard();
+
       Employees.insert({
-        name,
-        email,
-        phone,
+        name, email, phone,
         avatar: image.avatar()
       });
     });
